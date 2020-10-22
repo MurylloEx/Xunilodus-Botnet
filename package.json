@@ -1,0 +1,30 @@
+{
+  "name": "openwsccb",
+  "version": "0.0.1",
+  "description": "The Open WebSocket Command Control Botnet project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MurylloEx/OpenWSCCB.git"
+  },
+  "keywords": [
+    "botnet",
+    "websocket",
+    "command",
+    "control",
+    "c2"
+  ],
+  "author": "Muryllo Pimenta de Oliveira",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MurylloEx/OpenWSCCB/issues"
+  },
+  "homepage": "https://github.com/MurylloEx/OpenWSCCB#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "websocket": "^1.0.32"
+  }
+}
