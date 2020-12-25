@@ -1,0 +1,37 @@
+{
+  "name": "xunilodus-master",
+  "version": "0.0.1",
+  "description": "This command line tool is used to connect with an remote Xunilodus Command Control botnet server.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MurylloEx/Xunilodus-Botnet.git"
+  },
+  "keywords": [
+    "botnet",
+    "xunilodus",
+    "linux",
+    "sudo",
+    "root",
+    "virus",
+    "malware",
+    "attack",
+    "ddos"
+  ],
+  "author": "Muryllo Pimenta de Oliveira",
+  "bugs": {
+    "url": "https://github.com/MurylloEx/Xunilodus-Botnet/issues"
+  },
+  "homepage": "https://github.com/MurylloEx/Xunilodus-Botnet#readme",
+  "license": "MIT",
+  "dependencies": {
+    "binary-parser": "^1.7.0",
+    "prompt": "^1.1.0",
+    "uint-buffer": "^1.0.0",
+    "websocket": "^1.0.33",
+    "yargs": "^16.2.0"
+  }
+}

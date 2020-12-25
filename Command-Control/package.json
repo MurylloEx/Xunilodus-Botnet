@@ -1,0 +1,39 @@
+{
+  "name": "xunilodus-server",
+  "version": "0.0.1",
+  "description": "The Open WebSocket Command Control Botnet project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MurylloEx/Xunilodus-Botnet.git"
+  },
+  "keywords": [
+    "botnet",
+    "xunilodus",
+    "linux",
+    "sudo",
+    "root",
+    "virus",
+    "malware",
+    "attack",
+    "ddos"
+  ],
+  "author": "Muryllo Pimenta de Oliveira",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MurylloEx/Xunilodus-Botnet/issues"
+  },
+  "homepage": "https://github.com/MurylloEx/Xunilodus-Botnet#readme",
+  "dependencies": {
+    "binary-parser": "^1.7.0",
+    "colors": "^1.4.0",
+    "md5": "^2.3.0",
+    "nonce": "^1.0.4",
+    "uint-buffer": "^1.0.0",
+    "websocket": "^1.0.32",
+    "yargs": "^16.2.0"
+  }
+}
