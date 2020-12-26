@@ -1,8 +1,11 @@
 {
   "name": "xunilodus-master",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "This command line tool is used to connect with an remote Xunilodus Command Control botnet server.",
   "main": "index.js",
+  "bin": {
+    "xunilodus-master": "./index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
