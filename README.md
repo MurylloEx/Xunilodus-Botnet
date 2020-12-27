@@ -50,9 +50,6 @@ All traffic data between a Master and a Bot is tunneled by Command Control.
 
 <p align="center">
   <img alt="Installation Image" src="https://nodei.co/npm/xunilodus-server.png?downloads=true&downloadRank=true&stars=true">
-</p>
-
-<p align="center">
   <img alt="Installation Image" src="https://nodei.co/npm/xunilodus-master.png?downloads=true&downloadRank=true&stars=true">
 </p>
 
