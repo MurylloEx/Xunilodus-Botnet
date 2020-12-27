@@ -1,4 +1,4 @@
-# Xunilodus Botnet
+<h1 align="center">Xunilodus Botnet</h1>
 
 <p align="center">
   <img src="https://badgen.net/badge/dist/NPM/blue?icon=label"/>
@@ -7,6 +7,10 @@
   <img src="https://badgen.net/badge/lang/Python/yellow?icon=label"/>
   <img src="https://badgen.net/badge/license/MIT/blue?icon=label"/>
   <img src="https://badgen.net/badge/author/MurylloEx/red?icon=label"/>
+</p>
+
+<p align="center">
+  <img src="https://i.imgur.com/Wz9zf5Y.png" style="width:50%;min-width:256px;max-width:384px;"/>
 </p>
 
 The open-source project of a botnet master, command control and bot with linux system's as target.
