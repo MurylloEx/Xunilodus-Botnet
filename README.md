@@ -10,8 +10,8 @@
 </p>
 
 <p align="center">
-  <img src="https://i.imgur.com/Wz9zf5Y.png" style="width:50%;min-width:256px;max-width:384px;"/>
-</p>
+  <img src="https://i.imgur.com/T4JxPmw.png" style="min-width:256px;max-width:384px;"/>
+</p> 
 
 The open-source project of a botnet master, command control and bot with linux system's as target.
 
