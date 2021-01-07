@@ -56,7 +56,7 @@ var ImpersonationData = {
   ImpersonatedFingerprint: ''
 };
 var WebSockConnection = null;
-var SequenceIdentifierTable = [];
+//var SequenceIdentifierTable = [];
 var WebSock = new WebSockets.client();
 
 function WebSockSendQuery(commandId, commandFlags, dstFingerprint, status, payload){
@@ -214,7 +214,7 @@ function OnFrameReceived(frame){
               let data = JSON.parse(frame.Payload);
               console.log(`[+] Showing current commands available.\n`);
               for (let x in data){
-                console.log(`${data[x].cmd_name}:\nDescription: ${data[x].cmd_desc}\nUsage: ${data[x].cmd_usage}\n`);
+                console.log(`[?] ${data[x].cmd_name}:\nDescription: ${data[x].cmd_desc}\nUsage: ${data[x].cmd_usage}\n`);
               }
             } break;
           }

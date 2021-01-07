@@ -6,9 +6,9 @@ module.exports = {
       "cmd_usage": "Type \"HELP\"."
     },
     {
-      "cmd_name": "LIST-BOTS",
+      "cmd_name": "LISTBOTS",
       "cmd_desc": "This command show to Master's all bots available to be exploited be Xunilodus.",
-      "cmd_usage": "Type \"LIST-BOTS\"."
+      "cmd_usage": "Type \"LISTBOTS\"."
     },
     {
       "cmd_name": "IMPERSONATE",
@@ -21,9 +21,9 @@ module.exports = {
       "cmd_usage": "Type \"DEPERSONATE\"."
     },
     {
-      "cmd_name": "EXECUTE-SHELLCODE",
+      "cmd_name": "SHELLCODE",
       "cmd_desc": "This command allows master to execute remote shellcode in previous impersonated devices.",
-      "cmd_usage": "Type \"EXECUTE-SHELLCODE --SHELL=\"CHMOD 777 /etc/passwd\"\"\nOptional Flags:\n--INVISIBLE\n--VISIBLE\n--MAXIMIZED\n--MINIMIZED."
+      "cmd_usage": "Type \"SHELLCODE --SHELL=\"CHMOD 777 /etc/passwd\"\"\nOptional Flags:\n--INVISIBLE\n--VISIBLE\n--MAXIMIZED\n--MINIMIZED."
     }
   ],
   command_messages: {
