@@ -1,6 +1,6 @@
 {
   "name": "xunilodus-server",
-  "version": "0.0.4",
+  "version": "0.1.4",
   "description": "The Open WebSocket Command Control Botnet project.",
   "main": "index.js",
   "bin": {

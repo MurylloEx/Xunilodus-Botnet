@@ -13,7 +13,7 @@ module.exports = {
     {
       "cmd_name": "IMPERSONATE",
       "cmd_desc": "This command perform an IMPERSONATION in the level of destination fingerprint. Using this command, the Master's can execute remote shellcodes.",
-      "cmd_usage": "Type \"IMPERSONATE --FINGERPRINT=FA5B36CD\"."
+      "cmd_usage": "Type \"IMPERSONATE FA5B36CD\"."
     },
     {
       "cmd_name": "DEPERSONATE",
@@ -21,9 +21,9 @@ module.exports = {
       "cmd_usage": "Type \"DEPERSONATE\"."
     },
     {
-      "cmd_name": "SHELLCODE",
+      "cmd_name": "$",
       "cmd_desc": "This command allows master to execute remote shellcode in previous impersonated devices.",
-      "cmd_usage": "Type \"SHELLCODE --SHELL=\"CHMOD 777 /etc/passwd\"\"\nOptional Flags:\n--INVISIBLE\n--VISIBLE\n--MAXIMIZED\n--MINIMIZED."
+      "cmd_usage": "Type \"$ \"CHMOD 777 /etc/passwd\"\"\nOptional Flags:\n--INVISIBLE\n--VISIBLE\n--MAXIMIZED\n--MINIMIZED."
     }
   ],
   command_messages: {
